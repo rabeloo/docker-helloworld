@@ -1,10 +1,14 @@
 FROM python:3
-WORKDIR /home/app
+ARG APPDIR
+ENV APPDIR /home/app
 
-RUN useradd -c 'app.js user' -m -d /home/app -s /bin/bash app
-RUN pip install --no-cache-dir flask
+ADD . 
 
-ADD hello.py /home/app
+WORKDIR $APPDIR
+
+RUN useradd -c 'app.js user' -m -d $APPDIR -s /bin/bash app
+RUN pip install -r requirements.txt
+
 USER app
-ENV FLASK_APP /home/app/hello.py
+ENV FLASK_APP $APPDIR/hello.py
 CMD ["flask", "run", "--host=0.0.0.0"]
