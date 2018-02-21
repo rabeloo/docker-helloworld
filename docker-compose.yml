@@ -1,7 +1,6 @@
 version: '2'
 services:
   app:
-    image: "rabeloo/helloworld:v0.4"
     build: .
     ports:
       - "80:5000"

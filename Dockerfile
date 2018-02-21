@@ -2,7 +2,7 @@ FROM python:3
 ARG APPDIR
 ENV APPDIR /home/app
 
-ADD . 
+ADD . $APPDIR
 
 WORKDIR $APPDIR
 
