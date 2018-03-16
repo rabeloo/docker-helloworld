@@ -2,12 +2,12 @@ FROM python:3
 ARG APPDIR
 ENV APPDIR /home/app
 
-ADD . $APPDIR
+ADD app/ $APPDIR
 
 WORKDIR $APPDIR
 
-RUN useradd -c 'app.js user' -m -d $APPDIR -s /bin/bash app
-RUN pip install -r requirements.txt
+RUN useradd -c 'app user' -m -d $APPDIR -s /bin/bash app
+RUN pip install -r app/requirements.txt
 
 USER app
 ENV FLASK_APP $APPDIR/hello.py
